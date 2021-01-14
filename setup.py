@@ -78,16 +78,6 @@ setup_args = dict(
         "Programming Language :: Python :: 3.8",
         "Framework :: Jupyter",
     ],
-    rtd=[
-        "myst_parser",
-        "pyyaml",
-        "docutils>=0.15",
-        "sphinx",
-        "sphinxcontrib-bibtex",
-        "ipython",
-        "sphinx-book-theme",
-        "sphinx_tabs",
-    ],
 )
 
 
