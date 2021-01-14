@@ -21,7 +21,7 @@ pip install jupyter_packaging
 
 ```bash
 # Install jupyterlab.
-pip install jupyterlab==3.0.3
+pip install jupyterlab==3.0.4
 # ...or alternatively, clone and build jupyterlab from source.
 git clone https://github.com/jupyterlab/jupyterlab --depth 1 -b master && \
   cd jupyterlab && \
@@ -35,15 +35,6 @@ pip install ipywidgets==7.6.0
 ```
 
 ## Develop
-
-```bash
-# Create an extension skeleton with a cookiecutter.
-cookiecutter \
-  https://github.com/jupyterlab/extension-cookiecutter-ts \
-  --config-file cookiecutter.yaml \
-  --checkout master && \
-cd jupyter_auth
-```
 
 ```bash
 # Build the extension and link for dev in shell 1.

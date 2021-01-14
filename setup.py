@@ -86,7 +86,7 @@ setup_args = dict(
         "sphinxcontrib-bibtex",
         "ipython",
         "sphinx-book-theme",
-        "sphinx_tabs"
+        "sphinx_tabs",
     ],
 )
 
