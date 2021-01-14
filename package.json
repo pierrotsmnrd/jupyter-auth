@@ -1,10 +1,11 @@
 {
   "name": "@datalayer/jupyter-auth",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "JupyterLab Auth",
   "keywords": [
     "jupyter",
     "jupyterlab",
+    "jupyterlab3",
     "jupyterlab-extension"
   ],
   "homepage": "https://github.com/datalayer/jupyter-auth",
