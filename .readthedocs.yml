@@ -27,3 +27,4 @@ python:
       extra_requirements:
         - sphinx
         - rtd
+        - pathlib 
