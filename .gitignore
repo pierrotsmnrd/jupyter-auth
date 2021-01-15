@@ -20,6 +20,8 @@
 **/*.log
 **/*.egg-info
 **/__pycache__
+**/dist
+**/MANIFEST
 
 # Include
 !**/.*ignore

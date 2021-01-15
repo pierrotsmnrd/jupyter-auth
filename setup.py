@@ -31,7 +31,7 @@ package_data_spec = {
     ]
 }
 
-labext_name = "@datalayer/jupyter-auth"
+labext_name = "jupyter-auth"
 
 data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, lab_path, "*.*"),

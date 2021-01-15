@@ -25,7 +25,7 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    keywords="datalayer",
+    keywords="datalayer,jupyter,auth",
     python_requires=">=3.6",
     install_requires=[
     ],

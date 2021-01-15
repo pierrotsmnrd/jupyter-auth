@@ -94,14 +94,12 @@ jupyter lab build
 ## Publish
 
 ```bash
-cd jupyter_auth && \
-  yarn build:lib && \
+yarn build:lib && \
   npm publish --access public
 ```
 
 ```bash
-cd jupyter_auth && \
-  pip install -e . && \
+pip install -e . && \
   python setup.py sdist bdist_wheel && \
   twine upload dist/*
 ```
@@ -134,22 +132,7 @@ pip search "JupyterLab3"
 ```
 
 ```bash
-pip install @datalayer/jupyter-auth
+pip install jupyter-auth
 jupyter labextension list
 jupyter lab --notebook-dir=~/notebooks
 ```
-
-## Credits
-
-This folder contains code taken from following sources:
-
-- https://github.com/deshaw/jupyterlab-execute-time
-- https://github.com/ibqn/jupyterlab-codecellbtn
-- https://github.com/jtpio/jupyterlab-cell-flash
-- https://github.com/jtpio/jupyterlab-python-file
-- https://github.com/jtpio/jupyterlab-theme-toggle
-- https://github.com/jtpio/jupyterlab-topbar
-- https://github.com/jupyterlab/extension-examples
-- https://github.com/nersc/jupyterlab-recents
-- https://github.com/voila-dashboards/voila
-- https://github.com/yuvipanda/jupyterlab-nbmetadata

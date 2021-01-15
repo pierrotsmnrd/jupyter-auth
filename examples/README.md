@@ -143,7 +143,7 @@ pip search "JupyterLab3"
 ```
 
 ```bash
-pip install @datalayer/jupyter-auth
+pip install jupyter-auth
 jupyter labextension list
 jupyter lab --notebook-dir=~/notebooks
 ```

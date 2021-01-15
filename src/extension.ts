@@ -5,7 +5,7 @@ import {
 import { requestAPI } from './handler'
 
 const server: JupyterFrontEndPlugin<void> = {
-  id: '@datalayer/jupyter-auth',
+  id: 'jupyter-auth',
   autoStart: true,
   activate: (app: JupyterFrontEnd) => {
     requestAPI<any>('get_example')
