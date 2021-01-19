@@ -12,7 +12,6 @@ import os.path
 import urllib.parse
 from urllib.parse import urlparse
 
-
 from jupyter_server.base.handlers import JupyterHandler
 
 from typing import Any, Dict, cast
@@ -90,14 +89,10 @@ class GithubOAuth2Handler(GithubOAuth2Mixin, RequestHandler):
                 extra_params={'approval_prompt': 'auto'})
 
 
-class LoginGithubHandler(GithubOAuth2Handler):
-
+class LoginHandler(GithubOAuth2Handler):
 
     def get_user(self):
-        print(self.session.id)
-        print(self.session.driver._data_handler)
-        print(len(self.session.driver._data_handler))
-        return self.session.get("user", None)
+        return self.get_session().get("user", None)
 
 
     @classmethod
