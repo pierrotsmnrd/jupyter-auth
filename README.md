@@ -58,8 +58,8 @@ yarn watch
 conda activate jupyter-auth && \
   jupyter lab \
     --watch \
-    --ServerApp.token= \
     --ServerApp.jpserver_extensions="{'jupyter_auth': True}" \
+    --ServerApp.login_handler_class=jupyter_auth.providers.github.LoginGithubHandler \
     ./examples
 ```
 
