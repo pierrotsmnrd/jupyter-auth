@@ -26,7 +26,9 @@ class ExampleHandler(APIHandler):
     # Jupyter server
     @tornado.web.authenticated
     def get(self):
-        print(self.get_sessions()[self.get_session_id()]['user'])
+#        print(self.get_sessions()[self.get_session_id()]['user'])
+        for s in self.get_sessions().values():
+            print(f"--- {s['user']}")
         self.finish(json.dumps({
             "data": "This is /jupyter_auth/get_example endpoint!",
             "session_id": self.get_session_id(),
