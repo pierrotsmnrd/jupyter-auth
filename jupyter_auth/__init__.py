@@ -4,7 +4,7 @@ import os.path as osp
 
 from ._version import __version__
 
-from .app import JlabExtensions
+from .app import JupyterLabAuth
 
 
 HERE = osp.abspath(osp.dirname(__file__))
@@ -21,5 +21,5 @@ def _jupyter_labextension_paths():
 def _jupyter_server_extension_paths():
     return [{
         "module": "jupyter_auth.app",
-        "app": JlabExtensions
+        "app": JupyterLabAuth
     }]

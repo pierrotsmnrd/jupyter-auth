@@ -7,7 +7,7 @@ from jupyter_server.utils import url_path_join
 from .handlers import DefaultHandler, ExampleHandler
 
 
-class JlabExtensions(ExtensionApp):
+class JupyterLabAuth(ExtensionApp):
 
     # The name of the extension.
     name = "jupyter_auth"
@@ -36,4 +36,4 @@ class JlabExtensions(ExtensionApp):
 
 # Entry Point Definition
 
-main = launch_new_instance = JlabExtensions.launch_instance
+main = launch_new_instance = JupyterLabAuth.launch_instance
