@@ -4,7 +4,7 @@ import jinja2
 from jupyter_server.extension.application import ExtensionApp, ExtensionAppJinjaMixin
 from jupyter_server.utils import url_path_join
 
-from .handlers import DefaultHandler, ExampleHandler
+from .handlers import DefaultHandler, MeHandler, UsersHandler
 
 
 class JupyterLabAuth(ExtensionApp):
@@ -22,16 +22,10 @@ class JupyterLabAuth(ExtensionApp):
         self.log.info(f'{self.name} is enabled.')
 
     def initialize_handlers(self):
-#        host_pattern = ".*$"
-#        base_url = self.settings["base_url"]
-#        route_pattern = url_path_join(base_url, "jupyter_auth", "get_example")
-#        self.handlers.extend([
-#            (r'/{}/default'.format(self.name), DefaultHandler),
-#            (route_pattern, RouteHandler),
-#        ])
         self.handlers.extend([
-            (r'/jupyter_auth/default', DefaultHandler),
-            (r'/jupyter_auth/get_example', ExampleHandler),
+            (r'/{}/default'.format(self.name), DefaultHandler),
+            (r'/{}/me'.format(self.name), MeHandler),
+            (r'/{}/users'.format(self.name), UsersHandler),
         ])
 
 # Entry Point Definition

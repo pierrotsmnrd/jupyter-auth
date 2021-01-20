@@ -2,6 +2,15 @@
 
 # 🛡️ Jupyter Auth
 
+To use this library with GitHub authentication, you need to [create a OAuth app](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and export in your shell environement the client id and the client secret as variable:
+
+```bash
+export GITHUB_CLIENT_ID=<oauth-app-client-id>
+export GITHUB_CLIENT_SECRET=<oauth-app-client-secret>
+```
+
+![](https://raw.githubusercontent.com/datalayer/jupyter-auth/main/docs/source/images/oauth-app-example.png)
+
 ## Environment
 
 ```bash
@@ -60,6 +69,7 @@ conda activate jupyter-auth && \
     --watch \
     --ServerApp.jpserver_extensions="{'jupyter_auth': True}" \
     --ServerApp.login_handler_class=jupyter_auth.github.LoginHandler \
+    --no-browser \
     ./examples
 ```
 

@@ -43,8 +43,8 @@ class GithubOAuth2Mixin(SessionMixin, OAuth2Mixin):
             {
                 "redirect_uri": redirect_uri,
                 "code": code,
-                "client_id": os.getenv('DLA_GITHUB_CLIENT_ID'),
-                "client_secret": os.getenv('DLA_GITHUB_CLIENT_SECRET'),
+                "client_id": os.getenv('GITHUB_CLIENT_ID'),
+                "client_secret": os.getenv('GITHUB_CLIENT_SECRET'),
                 "grant_type": "authorization_code",
             }
         )
@@ -82,8 +82,8 @@ class GithubOAuth2Handler(GithubOAuth2Mixin, RequestHandler):
         else:
             self.authorize_redirect(
                 redirect_uri='http://localhost:8888/login',
-                client_id=os.getenv('DLA_GITHUB_CLIENT_ID'),
-                client_secret=os.getenv('DLA_GITHUB_CLIENT_SECRET'),
+                client_id=os.getenv('GITHUB_CLIENT_ID'),
+                client_secret=os.getenv('GITHUB_CLIENT_SECRET'),
                 scope=['read:user'],
                 response_type='code',
                 extra_params={'approval_prompt': 'auto'})
