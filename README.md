@@ -2,12 +2,14 @@
 
 # 🛡️ Jupyter Auth
 
-To use this library with GitHub authentication, you need to [create a OAuth app](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and export in your shell environement the client id and the client secret as variable:
+To use this library with GitHub authentication, you need to [create a OAuth app](https://docs.github.com/en/developers/apps/creating-an-oauth-app) and export in your shell environement the client id and the client secret as shell variable:
 
 ```bash
 export GITHUB_CLIENT_ID=<oauth-app-client-id>
 export GITHUB_CLIENT_SECRET=<oauth-app-client-secret>
 ```
+
+Set the Callback URL to `http://localhost:8888/login` (assuming you are running the Jupyter Server on port 8888).
 
 ![](https://raw.githubusercontent.com/datalayer/jupyter-auth/main/docs/source/images/oauth-app-example.png)
 
@@ -26,31 +28,12 @@ conda create -y \
   cookiecutter
 conda activate jupyter-auth
 pip install jupyter_packaging
-```
-
-```bash
 # Install jupyterlab.
 pip install jupyterlab==3.0.4
-# ...or alternatively, clone and build jupyterlab from source.
-git clone https://github.com/jupyterlab/jupyterlab --depth 1 -b master && \
-  cd jupyterlab && \
-  pip install -e . && \
-  jupyter lab build && \
-  cd ..
-```
-
-```bash
-pip install ipywidgets==7.6.0
-```
-
-## Develop
-
-```bash
+# Install jupyter_auth
+pip install -e .
 # Build the extension and link for dev in shell 1.
 jupyter labextension develop --overwrite
-```
-
-```bash
 # List extensions.
 jupyter labextension list
 pip list | grep jupyter-auth
@@ -58,91 +41,17 @@ pip list | grep jupyter-auth
 
 ```bash
 # Run and watch the extension in shell 1.
+conda activate jupyter-auth
 yarn watch
 ```
 
 ```bash
 # Run and watch jupyterlab in shell 2.
 # Look at the remote entry javascript, a webpack5 feature.
-conda activate jupyter-auth && \
-  jupyter lab \
-    --watch \
-    --ServerApp.jpserver_extensions="{'jupyter_auth': True}" \
-    --ServerApp.login_handler_class=jupyter_auth.github.LoginHandler \
-    --no-browser \
-    ./examples
-```
-
-```bash
-# Only if you have build jupyterlab from source.
-# Run and watch jupyterlab in shell 2.
-# Look at the remote entry javascript, a webpack5 feature.
-conda activate jupyter-auth && \
-  jupyter lab \
-    --watch \
-    --dev-mode \
-    --ServerApp.token= \
-    --ServerApp.jpserver_extensions="{'jupyter_auth': True}" \
-    --extensions-in-dev-mode \
-    ./examples
-```
-
-## Build
-
-```bash
-# Generate sourcemaps.
-jupyter labextension build --development=True .
-jupyter lab build --minimize=False
-```
-
-```bash
-# Do not generate sourcemaps.
-jupyter labextension build .
-jupyter lab build
-```
-
-## Publish
-
-```bash
-yarn build:lib && \
-  npm publish --access public
-```
-
-```bash
-pip install -e . && \
-  python setup.py sdist bdist_wheel && \
-  twine upload dist/*
-```
-
-## Use
-
-```bash
-conda deactivate && \
-  conda remove -y --all -n jupyter-auth-user
-# Create your conda environment.
-conda create -y \
-  -n jupyter-auth-user \
-  python=3.8 \
-  nodejs=14.5.0
-conda activate jupyter-auth-user
-pip install --pre jupyterlab==3.0.3
-```
-
-```bash
-pip install jupyterlab_widgets==1.0.0a6
-jupyter labextension list
-# Check the Extension Manager.
-jupyter lab --notebook-dir=~/notebooks
-```
-
-```bash
-# https://pypi.org/project/jupyterlab-geojs/#history
-pip search "jupyterlab extension"
-pip search "JupyterLab3"
-```
-
-```bash
-pip install jupyter-auth
-jupyter labextension list
-jupyter lab --notebook-dir=~/notebooks
+conda activate jupyter-auth
+jupyter lab \
+  --watch \
+  --ServerApp.jpserver_extensions="{'jupyter_auth': True}" \
+  --ServerApp.login_handler_class=jupyter_auth.github.LoginHandler \
+  ./examples
 ```

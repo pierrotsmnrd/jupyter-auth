@@ -67,7 +67,7 @@ class GithubOAuth2Handler(GithubOAuth2Mixin, RequestHandler):
     async def get(self):
         if self.get_argument('code', False):
             access = await self.get_authenticated_user(
-                redirect_uri='http://localhost:8000/login',
+                redirect_uri='http://localhost:8888/login',
                 code=self.get_argument('code')
                 )
             # TODO Deprecating API authentication through query parameter
