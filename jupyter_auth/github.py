@@ -18,12 +18,15 @@ from typing import Any, Dict, cast
 
 import tornado
 from tornado import escape
+from tornado.curl_httpclient import CurlAsyncHTTPClient
 from tornado.escape import url_escape
 from tornado.options import define, options
 from tornado.web import Application, RequestHandler
 from tornado.auth import OAuth2Mixin
 
 from torndsession.session import SessionMixin
+
+from typing import Any, Dict, Optional
 
 
 class GithubOAuth2Mixin(SessionMixin, OAuth2Mixin):
@@ -64,17 +67,47 @@ class GithubOAuth2Mixin(SessionMixin, OAuth2Mixin):
 
 class GithubOAuth2Handler(GithubOAuth2Mixin, RequestHandler):
 
+    async def oauth2_request(
+        self,
+        url: str,
+        access_token: Optional[str] = None,
+        post_args: Optional[Dict[str, Any]] = None,
+        **args: Any
+    ) -> Any:
+
+        all_args = {}
+        headers = {}
+        if access_token:
+            headers["Authorization"] = f'Bearer {access_token}'
+
+        if all_args:
+            url += "?" + urllib.parse.urlencode(all_args)
+
+        http = CurlAsyncHTTPClient()
+        
+        if post_args is not None:
+            response = await http.fetch(
+                url,
+                method="POST",
+                body=urllib.parse.urlencode(post_args),
+                headers=headers
+            )
+        else:
+            response = await http.fetch(url, headers=headers)
+        return escape.json_decode(response.body)
+
     async def get(self):
         if self.get_argument('code', False):
             access = await self.get_authenticated_user(
                 redirect_uri='http://localhost:8888/login',
                 code=self.get_argument('code')
-                )
-            # TODO Deprecating API authentication through query parameter
-            # https://developer.github.com/changes/2020-02-10-deprecating-auth-through-query-param/
+            )
+
             user = await self.oauth2_request(
                 "https://api.github.com/user",
                 access_token=access["access_token"])
+
+
             self.session["user"] = user
             # Save the user with e.g. set_secure_cookie
             self.set_secure_cookie("user", "user")
